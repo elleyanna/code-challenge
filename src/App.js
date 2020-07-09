@@ -5,9 +5,10 @@ import Typography from "@material-ui/core/Typography";
 import { property_data } from "./data/PropertyData.js";
 import "./App.css";
 
+// Given more time I would create a prettier homepage display right now it's just barebones requirements
+
 function App() {
   return (
-    // Given more time I would create a prettier homepage display right now it's just barebones requirements
     <div className="App">
       <UnitInput
         data={property_data.people}
