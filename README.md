@@ -12,57 +12,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
+# STRATIS HTML interface
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Create a simple web interface that will allow the user to do the following tasks:
 
-### `yarn build`
+- Enter in a unit number and display to the screen all the residents of that unit.
+- Enter in a first and last name and display all the information we have about that user. (Name, unit of residence, role(s) on property, and devices they are able to control.)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Try to anticipate the user's needs and create an interface that meets them.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Ideally, your final product will work as expected and look nice, but if you are running out of time, focus on getting your JavaScript to work over adding in additional styling. Do not spend more than four hours total on the project.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You can add in additional files to the project folder (e.g. CSS files or icons), but please make sure that we can load the final product in the latest version of a Chrome browser.
 
-### `yarn eject`
+## About the data
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Sample data are in the file property_data.js. You should not change anything within this file.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The "roles" key on people objects refers to the roles a user has on that property, which impacts what devices they can control.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+A person may control a device if:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- It is associated with their unit of residence.
+- The device is marked as admin_accessible and the user is an admin.
+  - For example, Mackenzie Carroll can control the thermostat, lights, and lock that have a unit value that matches her residence, 102
+  - Zakiyya Shabazz can control any device that has a unit value of 201, plus any "Sunnee" light and any lock (because she is an admin and those devices all have admin_accessible marked as true.)
