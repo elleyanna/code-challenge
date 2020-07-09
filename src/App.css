@@ -2,7 +2,7 @@
   text-align: center;
   min-height: 100vh;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   align-items: center;
   justify-content: space-evenly;
   font-size: calc(10px + 2vmin);
@@ -12,6 +12,11 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.Input-Container {
+  display: flex;
+  flex-direction: row;
 }
 
 @media (prefers-reduced-motion: no-preference) {
