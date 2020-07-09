@@ -2,6 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Paper from "@material-ui/core/Paper";
 
 function ResidentNameInput({ data, options }) {
   const initialResultsState = {
@@ -18,6 +19,8 @@ function ResidentNameInput({ data, options }) {
     if (residentInfo !== null) {
       setResults(residentInfo);
       const devices = Object.entries(data.devices);
+
+      // Given more time I would refactor the devices do not contain any duplicates
 
       devices.forEach((element) => {
         const key = element[0];
@@ -58,18 +61,21 @@ function ResidentNameInput({ data, options }) {
           <TextField {...params} label="Resident Name" variant="outlined" />
         )}
       />
-      <Typography>{results.unit && `Unit: ${results.unit}`}</Typography>
-      {results.roles.map((role, index) => {
-        return <Typography key={index}>{role}</Typography>;
-      })}
-      {associatedDevices.length > 0 &&
-        associatedDevices.map((device, index) => {
-          return (
-            <Typography key={index}>
-              {device.key} : {device.model}
-            </Typography>
-          );
+      {/* Given more time I would refactor the data display to look nicer */}
+      <Paper elevation={3}>
+        <Typography>{results.unit && `Unit: ${results.unit}`}</Typography>
+        {results.roles.map((role, index) => {
+          return <Typography key={index}>{role}</Typography>;
         })}
+        {associatedDevices.length > 0 &&
+          associatedDevices.map((device, index) => {
+            return (
+              <Typography key={index}>
+                {device.key} : {device.model}
+              </Typography>
+            );
+          })}
+      </Paper>
     </div>
   );
 }
