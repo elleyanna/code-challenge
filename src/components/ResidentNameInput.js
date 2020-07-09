@@ -12,29 +12,35 @@ function ResidentNameInput({ data, options }) {
   };
 
   const [results, setResults] = React.useState(initialResultsState);
-  // const [devices, setDevices] = React.useState({});
-
-  // const devices = Object.entries(data.devices);
-
-  // devices.map((device) => {
-  //   let key = device[0];
-  //   let value = device[1];
-  //   // console.log(key, value);
-  //   value.map((thing) => {
-  //     let collection = [];
-  //     if (thing.unit === residentInfo.unit) {
-  //       collection.push(key);
-  //       console.log(collection);
-  //     }
-  //     // console.log("thing", thing);
-  //   });
-  // });
+  const [associatedDevices, setAssociatedDevices] = React.useState([]);
 
   const getResidentInfo = (data, residentInfo) => {
     if (residentInfo !== null) {
       setResults(residentInfo);
+      const devices = Object.entries(data.devices);
+
+      devices.forEach((element) => {
+        const key = element[0];
+        const values = element[1];
+
+        values.forEach((value) => {
+          if (
+            `${value.unit}` === residentInfo.unit ||
+            (residentInfo.roles.includes("Admin") &&
+              value.admin_accessible === true)
+          ) {
+            let newDeviceObject = { key: key, model: value.model };
+
+            setAssociatedDevices((associatedDevices) => [
+              ...associatedDevices,
+              newDeviceObject,
+            ]);
+          }
+        });
+      });
     } else {
       setResults(initialResultsState);
+      setAssociatedDevices([]);
     }
   };
 
@@ -56,6 +62,14 @@ function ResidentNameInput({ data, options }) {
       {results.roles.map((role, index) => {
         return <Typography key={index}>{role}</Typography>;
       })}
+      {associatedDevices.length > 0 &&
+        associatedDevices.map((device, index) => {
+          return (
+            <Typography key={index}>
+              {device.key} : {device.model}
+            </Typography>
+          );
+        })}
     </div>
   );
 }

@@ -17,7 +17,11 @@ function App() {
           ),
         ]}
       />
-      <ResidentNameInput data={property_data} options={property_data.people} />
+      <ResidentNameInput
+        data={property_data}
+        options={property_data.people}
+        // devices={property_data.devices}
+      />
     </div>
   );
 }
